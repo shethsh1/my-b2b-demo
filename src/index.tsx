@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -12,7 +14,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Provider store={store} children={undefined}>
+    <Provider store={store}>
       <App />
     </Provider>
   </React.StrictMode>
