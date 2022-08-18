@@ -47,7 +47,7 @@ type PhotoState = {
 const initialState: PhotoState = {
   photos: [],
   loadingPhotos: true,
-  tabSelected: "animals",
+  tabSelected: "buyproperly-demo",
 };
 
 export const photoSlice = createSlice({

@@ -8,6 +8,8 @@ import Nav from "./Nav";
 import Login from "./BP-components/Login";
 import Deals from "./BP-components/Deals";
 import Signup from "./BP-components/Signup";
+import Verify from "./BP-components/Verify";
+import Profile from "./BP-components/Profile";
 
 //components
 
@@ -16,31 +18,6 @@ function Main() {
   const endPoint = useAppSelector((state) => state.photo.tabSelected);
 
   useEffect(() => {
-    window.addEventListener("load", () => {
-      if (window.location.href.includes("page=verify")) {
-        const params = new URLSearchParams(window.location.search);
-
-        const userId = params.get("userId"),
-          token = params.get("token"),
-          source = params.get("source");
-
-        if (userId && token && source) {
-          window.location.href = `/verify?userId=${userId}&token=${token}&source=${source}`;
-        }
-      }
-
-      if (window.location.href.includes("page=reset")) {
-        const params = new URLSearchParams(window.location.search);
-
-        const userId = params.get("userId"),
-          token = params.get("token"),
-          source = params.get("source");
-
-        if (userId && token && source) {
-          window.location.href = `/reset?userId=${userId}&token=${token}&source=${source}`;
-        }
-      }
-    });
     window.addEventListener("message", (event) => {
       if (event && event.origin === "http://localhost:4200") {
         const body = JSON.parse(event.data);
@@ -57,7 +34,9 @@ function Main() {
             return;
           case "loggedin":
             // Add logic to run here after user is logged in
-            navigate("/deals");
+            if (window.location.pathname === "/login") {
+              navigate("/deals");
+            }
             return;
           case "loggedout":
             // Add logic to run here after user is logged out
@@ -74,7 +53,7 @@ function Main() {
             return;
           case "openMyProfile":
             // Add logic to run here to show user's profile page
-            window.location.href = "profile.html";
+            navigate("/profile");
             return;
           default:
             navigate("/");
@@ -93,10 +72,6 @@ function Main() {
             {endPoint === "buyproperly-demo" && <Header />}
             <Routes>
               <Route
-                path="/"
-                element={endPoint === "buyproperly-demo" ? <></> : <Photos />}
-              />
-              <Route
                 path="/login"
                 element={
                   endPoint === "buyproperly-demo" ? <Login /> : <Photos />
@@ -112,6 +87,18 @@ function Main() {
                 path="/signup"
                 element={
                   endPoint === "buyproperly-demo" ? <Signup /> : <Photos />
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  endPoint === "buyproperly-demo" ? <Profile /> : <Photos />
+                }
+              />
+              <Route
+                path="/"
+                element={
+                  endPoint === "buyproperly-demo" ? <Verify /> : <Photos />
                 }
               />
             </Routes>
