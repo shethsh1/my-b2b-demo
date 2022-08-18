@@ -16,36 +16,36 @@ function Main() {
   const endPoint = useAppSelector((state) => state.photo.tabSelected);
 
   useEffect(() => {
+    window.addEventListener("load", () => {
+      if (window.location.href.includes("page=verify")) {
+        const params = new URLSearchParams(window.location.search);
+
+        const userId = params.get("userId"),
+          token = params.get("token"),
+          source = params.get("source");
+
+        if (userId && token && source) {
+          window.location.href = `/verify?userId=${userId}&token=${token}&source=${source}`;
+        }
+      }
+
+      if (window.location.href.includes("page=reset")) {
+        const params = new URLSearchParams(window.location.search);
+
+        const userId = params.get("userId"),
+          token = params.get("token"),
+          source = params.get("source");
+
+        if (userId && token && source) {
+          window.location.href = `/reset?userId=${userId}&token=${token}&source=${source}`;
+        }
+      }
+    });
     window.addEventListener("message", (event) => {
       if (event && event.origin === "http://localhost:4200") {
         const body = JSON.parse(event.data);
         console.log(body);
         const { userAction = null } = body;
-        window.addEventListener("load", () => {
-          if (window.location.href.includes("page=verify")) {
-            const params = new URLSearchParams(window.location.search);
-
-            const userId = params.get("userId"),
-              token = params.get("token"),
-              source = params.get("source");
-
-            if (userId && token && source) {
-              window.location.href = `/verify?userId=${userId}&token=${token}&source=${source}`;
-            }
-          }
-
-          if (window.location.href.includes("page=reset")) {
-            const params = new URLSearchParams(window.location.search);
-
-            const userId = params.get("userId"),
-              token = params.get("token"),
-              source = params.get("source");
-
-            if (userId && token && source) {
-              window.location.href = `/reset?userId=${userId}&token=${token}&source=${source}`;
-            }
-          }
-        });
         switch (userAction) {
           case "login":
             // Add logic to run here after user clicks on login button
