@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Box, Container } from "@mui/material";
 import { useAppSelector } from "../redux/hooks";
-import Header from "./BP-components/Header";
 import Photos from "./Photos";
 import { useNavigate, Routes, Route } from "react-router";
 import Nav from "./Nav";
@@ -69,7 +68,6 @@ function Main() {
       <Box component="main">
         <Container maxWidth="xl" disableGutters>
           <div className="mt-10">
-            {endPoint === "buyproperly-demo" && <Header />}
             <Routes>
               <Route
                 path="/login"

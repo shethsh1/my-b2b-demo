@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Header from "./Header";
 
 export default function Deals() {
   useEffect(() => {
@@ -6,6 +7,7 @@ export default function Deals() {
   });
   return (
     <div className="w-full h-screen">
+      <Header />
       <iframe
         title="deals"
         src="http://localhost:4200/deals?source=1234230310"

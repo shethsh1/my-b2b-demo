@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Header from "./Header";
 
 export default function Login() {
   useEffect(() => {
@@ -6,6 +7,7 @@ export default function Login() {
   });
   return (
     <div className="w-full h-screen">
+      <Header />
       <iframe
         title="login"
         src="http://localhost:4200/login?source=1234230310"

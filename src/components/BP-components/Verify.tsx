@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Loading from "../Loading";
+import Header from "./Header";
 import Login from "./Login";
 
 export default function Verify() {
@@ -72,6 +73,7 @@ export default function Verify() {
   } else if (resetPage === true) {
     return (
       <div className="w-full h-screen">
+        <Header />
         <iframe
           title="verify"
           src="http://localhost:4200/login?source=1234230310"
