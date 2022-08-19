@@ -17,6 +17,43 @@ function Main() {
   const endPoint = useAppSelector((state) => state.photo.tabSelected);
 
   useEffect(() => {
+    function setVerifyIframeSrc() {
+      const params = new URLSearchParams(window.location.search);
+      const userId = params.get("userId"),
+        token = params.get("token"),
+        source = params.get("source");
+
+      if (userId && token && source) {
+        const wrapper = document.getElementById(
+          "verifyIframeId"
+        ) as HTMLIFrameElement;
+        wrapper.src = `http://localhost:4200/verify?userId=${userId}&token=${token}&source=${source}`;
+      }
+    }
+
+    function setResetPasswordIframeSrc() {
+      const params = new URLSearchParams(window.location.search);
+      const userId = params.get("userId"),
+        token = params.get("token"),
+        source = params.get("source");
+
+      if (userId && token && source) {
+        const wrapper = document.getElementById(
+          "resetIframeId"
+        ) as HTMLIFrameElement;
+        wrapper.src = `http://localhost:4200/reset?userId=${userId}&token=${token}&source=${source}`;
+      }
+    }
+
+    window.addEventListener("load", () => {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("page") === "verify") {
+        setVerifyIframeSrc();
+      } else if (params.get("page") === "reset") {
+        setResetPasswordIframeSrc();
+      }
+    });
+
     window.addEventListener("message", (event) => {
       if (event && event.origin === "http://localhost:4200") {
         const body = JSON.parse(event.data);

@@ -10,44 +10,14 @@ export default function Verify() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    function setVerifyIframeSrc() {
-      const params = new URLSearchParams(window.location.search);
-      const userId = params.get("userId"),
-        token = params.get("token"),
-        source = params.get("source");
-
-      if (userId && token && source) {
-        const wrapper = document.getElementById(
-          "verifyIframeId"
-        ) as HTMLIFrameElement;
-        wrapper.src = `http://localhost:4200/verify?userId=${userId}&token=${token}&source=${source}`;
-      }
-    }
-
-    function setResetPasswordIframeSrc() {
-      const params = new URLSearchParams(window.location.search);
-      const userId = params.get("userId"),
-        token = params.get("token"),
-        source = params.get("source");
-
-      if (userId && token && source) {
-        const wrapper = document.getElementById(
-          "resetIframeId"
-        ) as HTMLIFrameElement;
-        wrapper.src = `http://localhost:4200/reset?userId=${userId}&token=${token}&source=${source}`;
-      }
-    }
-
     const params = new URLSearchParams(window.location.search);
 
     if (params.get("page") === "verify") {
       setVerifyPage(true);
       setResetPage(false);
-      window.addEventListener("load", setVerifyIframeSrc);
     } else if (params.get("page") === "reset") {
       setVerifyPage(false);
       setResetPage(true);
-      window.addEventListener("load", setResetPasswordIframeSrc);
     } else {
       setVerifyPage(false);
       setResetPage(false);
@@ -58,6 +28,7 @@ export default function Verify() {
   if (verifyPage === true) {
     return (
       <div className="w-full h-screen">
+        <Header />
         <iframe
           title="verify"
           src="http://localhost:4200/login?source=1234230310"
@@ -87,6 +58,6 @@ export default function Verify() {
       </div>
     );
   } else {
-    return <Loading />;
+    return <Header />;
   }
 }
