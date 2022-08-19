@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import Loading from "../Loading";
 import Header from "./Header";
-import Login from "./Login";
 
 export default function Verify() {
   const [resetPage, setResetPage] = useState(false);
