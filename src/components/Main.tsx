@@ -80,7 +80,7 @@ function Main() {
             return;
           case "verified":
             // Add logic to run here after user email verification is done
-            navigate("/login");
+            // navigate("/login");
             return;
           case "passwordReset":
             // Add logic to run here after user Password reset is completed
