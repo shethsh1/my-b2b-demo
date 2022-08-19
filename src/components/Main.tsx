@@ -91,6 +91,9 @@ function Main() {
             // Add logic to run here to show user's profile page
             navigate("/profile");
             return;
+          case "showDeals":
+            navigate("/deals");
+            return;
           default:
             navigate("/");
             return;
